@@ -1,31 +1,29 @@
-import React from "react";
-import Grid from '@mui/material/Grid';
-const Component1 = () => {
+import React from 'react';
+import Form from '@rjsf/core';
+import { RJSFSchema } from '@rjsf/utils';
+import validator from '@rjsf/validator-ajv8';
+
+export const MyFormComponent = () => {
+  const schema: RJSFSchema = {
+    title: 'Todo',
+    type: 'object',
+    required: ['title'],
+    properties: {
+      title: { type: 'string', title: 'Title', default: 'A new task' },
+      done: { type: 'boolean', title: 'Done?', default: false },
+    },
+  };
+
+  const log = (type) => console.log.bind(console, type);
+
   return (
+    <Form
+      schema={schema}
+      validator={validator}
+      onChange={log('changed')}
+      onSubmit={log('submitted')}
+      onError={log('errors')}
+    />
+  );
+};
 
-    <Grid
-      container
-      spacing={2}
-      style={{ backgroundColor: "blue" }}
-      >
-      <Grid item xs={6} style={{ backgroundColor: "green" }} sx={{
-        height: 200,
-        width: {
-          xs: 100,
-          sm: 200,
-          md: 300,
-          lg: 400,
-          xl: 500
-        }
-      }} md={4}>
-        Grid 1
-      </Grid>
-      <Grid item xs={6} style={{ backgroundColor: "red" }} md={8}>
-        Grid 2
-      </Grid>
-    </Grid>
-  )
-
-}
-
-export default Component1
