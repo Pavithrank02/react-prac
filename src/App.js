@@ -1,12 +1,14 @@
 
 import './App.css';
-import {MyFormComponent} from './components/Component1';
+import { MyFormComponent } from './components/Component1';
+import GridComponent from './components/GridComponent';
 import Sidebar from './components/Sidebar';
 
 function App() {
   return (
     <div className="App">
-      <Sidebar />
+      {/* <Sidebar /> */}
+      <GridComponent />
     </div>
   );
 }
